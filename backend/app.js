@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const cors = require("cors");
-// const route = require("./routes/index");
+const route = require("./routes/index");
 // const errorHandler = require("./middlewares/errorHandler");
 
 // parser
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // routes
-// app.use(route);
+app.use(route);
 // app.use(errorHandler);
 
 // server
