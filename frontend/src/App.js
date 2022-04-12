@@ -1,15 +1,16 @@
 import React from 'react';
-import GlobalStyle from "./GlobalStyle";
+import GlobalStyle,  { Button, Container, MainHeading } from "./GlobalStyle";
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Navbar from "./component/Navbar/Navbar";
 import Homepage from "./pages/Homepage";
+// import from "./GlobalStyle";
 // import Photo from "./pages/Photo";
 // import logo from './logo.svg';
 // import './App.css';
 
 function App() {
   return (
-    <div>
+    <Container>
 
     <Router>
       <GlobalStyle />
@@ -22,7 +23,7 @@ function App() {
         </Routes>
       {/* </Switch> */}
     </Router>
-    </div>
+    </Container>
   );
 }
 
