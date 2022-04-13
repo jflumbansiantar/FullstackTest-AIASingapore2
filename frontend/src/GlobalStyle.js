@@ -137,4 +137,18 @@ export const Button = styled.button`
 	}
 `;
 
+export const SocialIcon = styled.img`
+	margin-right: 10px;
+	max-width:80%;
+    max-height: 150px;
+`;
+
+export const ContainerProduct = styled.div`
+	margin: 15px auto;
+	margin: 0 auto;
+	display: grid;
+	grid-row-gap: 36px;
+	grid-column-gap: 70px;
+	grid-template-columns: repeat(auto-fit, minmax(18%, 1fr));
+`;
 export default GlobalStyle;
