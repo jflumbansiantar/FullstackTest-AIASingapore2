@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from "axios";
-import { Button, Container, MainHeading } from './../../GlobalStyle';
+import { Button, Container, MainHeading, Section, Heading, TextWrapper, Row, Column } from './../../GlobalStyle';
 // import Photo from "./../Photo/Photo";
 
 function Body(){
@@ -15,10 +15,12 @@ function Body(){
             setLoading(true);
             try {
                 const pho = await axios.get(
-                    search === "" ? 'http://localhost:8000/all-photo' : `http://localhost:8000/search/${search}`
+                    "http://localhost:8000/all-photo"
+                    // search === "" ? 'http://localhost:8000/all-photo' : `http://localhost:8000/search/${search}`
                 );
-                console.log(pho.data, "ALL Photo")
-                setPhotos(pho.data)
+                // let temp = pho.data
+                // console.log(temp.data.photos, "ALL Photo")
+                setPhotos(pho.data.data.photos.photo)
             } catch (error) {
                 console.log("ini error: ", error);
             }
@@ -26,12 +28,20 @@ function Body(){
         getPhotos()
     })
 
+    console.log(photos)
+
     return(
-        <Container>
-            <MainHeading>
-                <Button>photos</Button>
-            </MainHeading>
-        </Container>
+        <>
+            <Container>
+                <Section>
+                {photos.map(el => (
+                    <Row padding="10px">
+                        <TextWrapper color="white" font-size="12px">{el.title}</TextWrapper>
+                    </Row>
+                ))}
+                </Section>
+            </Container>
+        </>
     )
 }
 
