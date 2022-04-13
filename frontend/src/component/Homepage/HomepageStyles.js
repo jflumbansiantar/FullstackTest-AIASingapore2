@@ -24,3 +24,17 @@ export const ButtonLink = styled(Link)`
 		transition: 0.3s ease-out;
 	}
 `;
+
+export const SearchBox = styled.input`
+	background-color: #dfdfdf;
+	box-sizing: border-box;
+	padding: 11px;
+	border-radius: 6px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+    width: 410px;
+    position: relative;
+	height: 48px;
+    border: none;
+    outline: none;
+`

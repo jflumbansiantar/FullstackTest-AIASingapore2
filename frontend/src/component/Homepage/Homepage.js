@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from "axios";
-import { Button, Container, MainHeading, Section, Heading, TextWrapper, Column, Row, SocialIcon, ContainerProduct } from './../../GlobalStyle';
-import {FeatureColumn} from './HomepageStyles'
-import SearchIcon from '@material-ui/icons//Search';
+import { Container, Section, TextWrapper, Row, SocialIcon, ContainerProduct } from './../../GlobalStyle';
+import {FeatureColumn, SearchBox} from './HomepageStyles';
 import Search from '@material-ui/icons//Search';
-
-// import Photo from "./../Photo/Photo";
+import Swal from "sweetalert2";
 
 function Body(){
     const [photos,setPhotos] = useState([]),
         [loading, setLoading] = useState(false),
-        [page, setPage] = useState(1),
-        [totalPage, SetTotalPage] = useState(0),
-        [modal, setModal] = useState({
-            sideDrawer: false,
-          }),
-        [isShown, setIsShown] = useState(false),
-        [input, setInput] = useState("");
+        // [page, setPage] = useState(1),
+        // [totalPage, SetTotalPage] = useState(0),
+        [input, setInput] = useState(""), 
+        initial = { y: 40, opacity: 0 }, animate = { y: 0, opacity: 1 };
 
     const searchString = (e) => {
         e.preventDefault();
         setInput(e.target.value);
         };
-        const history = useHistory();
 
     const searchFunc = (e) => {
         e.preventDefault();
         if (input) {
-            history.push(`/search/${input}`);
-            setInput("");
+            const getPhotos = async (input) => {
+                setLoading(true);
+                // console.log(input)
+                try {
+                    const pho = await axios.get({
+                       url: `http://localhost:8000/search`,
+                       headers: {
+                        tag: input,
+                      }
+                    });
+                    setPhotos(pho.data.result)
+                } catch (error) {
+                    console.log("ini error: ", error);
+                }
+            }
+            getPhotos(input)
         } else {
             Swal.fire({
             title: "Type something in searchbar!",
@@ -37,16 +45,6 @@ function Body(){
             });
         }
     }
-        
-    
-    const initial = {
-        y: 40,
-        opacity: 0,
-    };
-    const animate = {
-        y: 0,
-        opacity: 1,
-    };
 
     useEffect(() => {
         const getPhotos = async (search) => {
@@ -54,7 +52,6 @@ function Body(){
             try {
                 const pho = await axios.get(
                     "http://localhost:8000/all-photo"
-                    // search === "" ? 'http://localhost:8000/all-photo' : `http://localhost:8000/search/${search}`
                 );
 
                 setPhotos(pho.data.result)
@@ -68,24 +65,21 @@ function Body(){
     return(
         <>
             <Container>
-                <Section inverse>
+                <Section inverse padding="10px" mindWIdth="700px">
                     <Row>
-                        <Row>
-                            <img src={Search} alt="search"></img>
-                        </Row>
-                        <Row>
-                            <form onSubmit={searchFunc}>
-                                <input
-                                type="text"
-                                placeholder="Search Porduct..."
-                                name="search"
-                                onChange={searchString}
-                                value={input}
-                                />
-                            </form>
-                        </Row>
-                        
+                       <Search />
+                        <form onSubmit={searchFunc}>
+                            <SearchBox
+                            type="text"
+                            placeholder="Search Porduct..."
+                            name="search"
+                            onChange={searchString}
+                            value={input}
+                            />
+                        </form>
                     </Row>
+                </Section>
+                <Section padding="20px" mindWIdth="700px">
                     <ContainerProduct>
                     {photos.map((el, index) => (
                         <Row padding="10px" justify="center" width="300px">
