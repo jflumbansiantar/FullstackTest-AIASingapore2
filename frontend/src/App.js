@@ -1,29 +1,16 @@
 import React from 'react';
-import GlobalStyle,  { Button, Container, MainHeading } from "./GlobalStyle";
-import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Navbar from "./component/Navbar/Navbar";
+import GlobalStyle from "./GlobalStyle";
+import {BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-// import from "./GlobalStyle";
-// import Photo from "./pages/Photo";
-// import logo from './logo.svg';
-// import './App.css';
 
 function App() {
   return (
-    <Container>
-
     <Router>
       <GlobalStyle />
-      {/* <Navbar /> */}
-      {/* <Switch> */}
-          {/* <Homepage /> */}
-        <Routes>
-          jancuk
-          <Route path="/home" exact component={Homepage} />
-        </Routes>
-      {/* </Switch> */}
+      <Switch>
+          <Route path="/" exact component={Homepage} />
+      </Switch>
     </Router>
-    </Container>
   );
 }
 
