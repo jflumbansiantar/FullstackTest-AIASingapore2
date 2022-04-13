@@ -27,7 +27,7 @@ function Body(){
                 // console.log(input)
                 try {
                     const pho = await axios.get({
-                       url: `http://localhost:8000/search`,
+                       url: `/search`,
                        headers: {
                         tag: input,
                       }
@@ -51,7 +51,7 @@ function Body(){
             setLoading(true);
             try {
                 const pho = await axios.get(
-                    "http://localhost:8000/all-photo"
+                    "/all-photo"
                 );
 
                 setPhotos(pho.data.result)
