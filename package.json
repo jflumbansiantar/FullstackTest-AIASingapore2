@@ -1,0 +1,26 @@
+{
+  "name": "FullstackTest-AIASingapore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm start --prefix backend",
+    "client": "npm start --prefix frontend",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jflumbansiantar/FullstackTest-AIASingapore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jflumbansiantar/FullstackTest-AIASingapore/issues"
+  },
+  "homepage": "https://github.com/jflumbansiantar/FullstackTest-AIASingapore#readme",
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
